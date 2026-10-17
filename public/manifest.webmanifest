@@ -1,0 +1,15 @@
+{
+  "name": "Kingdoms of War — Offline Strategy",
+  "short_name": "Kingdoms of War",
+  "description": "A fully offline kingdom-building RTS: build, train, battle and conquer. No accounts, no internet.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#14100c",
+  "theme_color": "#14100c",
+  "icons": [
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

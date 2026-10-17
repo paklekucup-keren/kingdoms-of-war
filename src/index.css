@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+:root {
+  --parch: #efe0bd;
+  --parch-2: #e2cd9d;
+  --ink: #2a2118;
+  --gold: #d4a437;
+  --gold-2: #f0cf7a;
+  --crim: #b3382e;
+  --azure: #2e63b3;
+  --moss: #3c7a44;
+  --coal: #14100c;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--coal);
+  color: var(--ink);
+  font-family: "Alegreya Sans", "Segoe UI", system-ui, sans-serif;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+canvas { display: block; touch-action: none; }
+
+.font-display { font-family: "Cinzel", "Georgia", serif; }
+
+/* ---------- shared chrome ---------- */
+.panel-parch {
+  background:
+    radial-gradient(120% 140% at 50% -20%, rgba(255, 244, 214, .55), rgba(255, 244, 214, 0) 55%),
+    linear-gradient(180deg, var(--parch), var(--parch-2));
+  border: 2px solid #7a5c2e;
+  box-shadow: 0 0 0 2px #2a2118, 0 10px 24px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255,255,255,.5);
+  border-radius: 10px;
+  color: var(--ink);
+}
+.panel-dark {
+  background: linear-gradient(180deg, #221a12, #171009);
+  border: 1px solid #4a3823;
+  box-shadow: 0 0 0 1px #0b0805, 0 12px 28px rgba(0,0,0,.5);
+  border-radius: 10px;
+  color: var(--parch);
+}
+
+.btn {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+  font-family: "Cinzel", serif; font-weight: 700; letter-spacing: .04em;
+  border-radius: 8px; cursor: pointer; transition: transform .08s ease, filter .12s ease;
+  border: 2px solid #241a0e;
+  box-shadow: 0 3px 0 #241a0e, 0 6px 14px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.35);
+}
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #241a0e, 0 3px 8px rgba(0,0,0,.4); }
+.btn-gold { background: linear-gradient(180deg, var(--gold-2), var(--gold) 55%, #a87a1f); color: #2c1f08; }
+.btn-crim { background: linear-gradient(180deg, #e0604f, var(--crim) 55%, #7e231c); color: #ffe9d9; }
+.btn-moss { background: linear-gradient(180deg, #63a86c, var(--moss) 60%, #24492a); color: #ecffe9; }
+.btn-iron { background: linear-gradient(180deg, #6d7683, #4a515c 60%, #2c3138); color: #e8eef7; }
+.btn[disabled] { filter: grayscale(.8) brightness(.6); cursor: not-allowed; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: .35rem;
+  background: linear-gradient(180deg, rgba(30,22,12,.92), rgba(18,13,8,.95));
+  border: 1px solid #55401f; color: var(--parch);
+  border-radius: 999px; padding: .15rem .6rem;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 2px 6px rgba(0,0,0,.4);
+  font-weight: 700; font-variant-numeric: tabular-nums;
+}
+
+.txt-shadow { text-shadow: 0 2px 0 rgba(0,0,0,.55), 0 4px 12px rgba(0,0,0,.6); }
+
+.scroll-thin::-webkit-scrollbar { height: 8px; width: 8px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: #7a5c2e; border-radius: 4px; }
+.scroll-thin::-webkit-scrollbar-track { background: rgba(0,0,0,.25); }
+
+/* ---------- animations ---------- */
+@keyframes pop-in { 0% { transform: scale(.85); opacity: 0 } 70% { transform: scale(1.03) } 100% { transform: scale(1); opacity: 1 } }
+.anim-pop { animation: pop-in .22s cubic-bezier(.2,1.4,.4,1) both; }
+@keyframes rise-in { from { transform: translateY(14px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+.anim-rise { animation: rise-in .3s ease both; }
+@keyframes pulse-gold { 0%,100% { box-shadow: 0 0 0 0 rgba(212,164,55,.55) } 50% { box-shadow: 0 0 0 8px rgba(212,164,55,0) } }
+.anim-pulse-gold { animation: pulse-gold 1.6s ease infinite; }
+@keyframes star-pop { 0% { transform: scale(0) rotate(-30deg); opacity: 0 } 70% { transform: scale(1.25) rotate(6deg) } 100% { transform: scale(1) rotate(0); opacity: 1 } }
+.anim-star { animation: star-pop .45s cubic-bezier(.2,1.6,.4,1) both; }
+@keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-4px) } }
+.anim-bob { animation: bob 1.8s ease-in-out infinite; }
+@keyframes banner-sway { 0%,100% { transform: rotate(-2deg) } 50% { transform: rotate(2.5deg) } }
+.anim-sway { animation: banner-sway 5s ease-in-out infinite; transform-origin: top center; }
+@keyframes toast-in { from { transform: translateY(-10px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+.anim-toast { animation: toast-in .25s ease both; }
+@keyframes shimmer { from { background-position: -200% 0 } to { background-position: 200% 0 } }
+.anim-shimmer {
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%);
+  background-size: 200% 100%; animation: shimmer 2.2s linear infinite;
+}
+
+@keyframes ember { 0% { transform: translateY(0) scale(1); opacity: 0 } 10% { opacity: .8 } 100% { transform: translateY(-110vh) scale(.4); opacity: 0 } }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-pop, .anim-rise, .anim-star, .anim-bob, .anim-sway { animation: none !important; }
+}
